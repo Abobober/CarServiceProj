@@ -1,0 +1,6 @@
+<h1>Удалить автомобиль {{ car.model }} ({{ car.VIN }})?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Удалить</button>
+  <a href="{% url 'car_list' %}">Отмена</a>
+</form>

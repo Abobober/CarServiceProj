@@ -1,0 +1,13 @@
+<h1>Список автомобилей</h1>
+<a href="{% url 'car_create' %}">Добавить новый автомобиль</a>
+<ul>
+  {% for car in cars %}
+    <li>
+      <a href="{% url 'car_detail' car.VIN %}">{{ car.model }} ({{ car.VIN }})</a>
+      - <a href="{% url 'car_update' car.VIN %}">Редактировать</a>
+      - <a href="{% url 'car_delete' car.VIN %}">Удалить</a>
+    </li>
+  {% empty %}
+    <li>Автомобилей нет</li>
+  {% endfor %}
+</ul>
