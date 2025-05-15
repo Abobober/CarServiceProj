@@ -1,13 +1,30 @@
-<h1>Список автомобилей</h1>
-<a href="{% url 'car_create' %}">Добавить новый автомобиль</a>
-<ul>
-  {% for car in cars %}
-    <li>
-      <a href="{% url 'car_detail' car.VIN %}">{{ car.model }} ({{ car.VIN }})</a>
-      - <a href="{% url 'car_update' car.VIN %}">Редактировать</a>
-      - <a href="{% url 'car_delete' car.VIN %}">Удалить</a>
-    </li>
-  {% empty %}
-    <li>Автомобилей нет</li>
-  {% endfor %}
-</ul>
+{% extends "workshop/base.html" %}
+
+{% block content %}
+<h2>Список автомобилей</h2>
+<a href="{% url 'car-create' %}" class="btn btn-primary mb-3">Добавить автомобиль</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>VIN</th>
+            <th>Модель</th>
+            <th>Год выпуска</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.VIN }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.productionYear }}</td>
+            <td>
+                <a href="{% url 'car-detail' car.VIN %}" class="btn btn-info btn-sm">Подробнее</a>
+                <a href="{% url 'car-update' car.VIN %}" class="btn btn-warning btn-sm">Изменить</a>
+                <a href="{% url 'car-delete' car.VIN %}" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

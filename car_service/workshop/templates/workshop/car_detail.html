@@ -1,4 +1,11 @@
-<h1>Автомобиль {{ car.model }}</h1>
+{% extends "workshop/base.html" %}
+
+{% block content %}
+<h2>Детали автомобиля</h2>
 <p>VIN: {{ car.VIN }}</p>
-<p>Год производства: {{ car.productionYear }}</p>
-<a href="{% url 'car_list' %}">Назад к списку</a>
+<p>Модель: {{ car.model }}</p>
+<p>Год выпуска: {{ car.productionYear }}</p>
+<a href="{% url 'car-update' car.VIN %}" class="btn btn-warning">Изменить</a>
+<a href="{% url 'car-delete' car.VIN %}" class="btn btn-danger">Удалить</a>
+<a href="{% url 'car-list' %}" class="btn btn-secondary">Назад</a>
+{% endblock %}
